@@ -5,7 +5,7 @@ import Button from '../Button/Button'
 const Hero = () => {
   return (
    <section>
-    <div className='max-w-[1400px] mx-auto px-10 flex items-center '>
+    <div className='max-w-[1400px] mx-auto px-10 md:flex-row flex-col items-center md:pt-25 pt-35  min-h-screen flex'>
 
       {/* Hero content */}
       <div className='flex-1'>
@@ -13,10 +13,10 @@ const Hero = () => {
   Export Best Quality...
 </span>
 
-        <h1 className='text-7xl/20 mt-4 font-bold '>
+        <h1 className='md:text-7xl/20 text-5xl/14 mt-4 font-bold '>
             Tasty Orange <br /><span className='text-orange-500' >Fruits</span> & <span className='text-orange-500'>Veggies</span> <br />In Your City
         </h1>
-        <p className='text-zinc-600 text-lg max-w[530] mt-5 mb-10'>
+        <p className='text-zinc-600 md:text-lg text-md max-w[530px] mt-5 mb-10'>
            Bred for a high content of beneficial substances. Our products are all fresh and healthy.
         </p>
         <Button content="Shop Now"/>
