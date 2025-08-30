@@ -4,6 +4,7 @@ import { HiShoppingBag } from "react-icons/hi2";
 import { IoIosSearch } from "react-icons/io";
 import { TbMenu2 } from "react-icons/tb";
 import { TbMenu3 } from "react-icons/tb";
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 
@@ -25,16 +26,16 @@ const Navbar = () => {
    <header className={` bg-white fixed top-0 right-0 left-0 z-50 ${isScrolled ? 'drop-shadow-[0_4px_25px_rgba(0,0,0,0.1)]' : ""}`}>
     <nav className='items-center flex justify-between max-w-[1400px] mx-auto md:h-[14vh] px-10 h-[12vh]'>
         {/* Logo */}
-        <a href="#" className='text-3xl font-bold'>
+        <Link to="/" className='text-3xl font-bold'>
             Gr<span className='text-orange-500 uppercase'>o</span>cify
-        </a>
+        </Link>
 
         {/* Desktop Menu */}
         <ul className='hidden items-center gap-x-15 md:flex'>
-            <li><a href="#" className='font-semibold tracking-wider text-orange-500 hover:text-orange-500'>Home</a></li>
+            <li><Link to="/" className='font-semibold tracking-wider text-orange-500 hover:text-orange-500'>Home</Link></li>
             <li><a href="" className='font-semibold tracking-wider text-zinc-800 hover:text-orange-500'>About Us</a></li>
             <li><a href="" className='font-semibold tracking-wider text-zinc-800 hover:text-orange-500'>Process</a></li>
-            <li><a href="" className='font-semibold tracking-wider text-zinc-800 hover:text-orange-500'>Contact Us</a></li>
+            <li><Link to="/contact" className='font-semibold tracking-wider text-zinc-800 hover:text-orange-500'>Contact Us</Link></li>
         </ul>
 
         {/* Nav Action  */}

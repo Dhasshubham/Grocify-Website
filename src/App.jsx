@@ -6,6 +6,7 @@ import Dairy from "./components/Dairy/Dairy";
 import SeaFood from "./components/SeaFood/SeaFood";
 import AllProducts from "./components/AllProducts/AllProducts";
 import Layout from "./components/Layout/Layout";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -33,7 +34,12 @@ const App = () => {
           path: "/allproducts",
           element: <AllProducts />,
         },
+       
       ],
+      
+
+     
+
     },
   ]);
 

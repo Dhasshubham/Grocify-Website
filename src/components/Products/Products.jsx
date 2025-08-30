@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Products = () => {
 
-    const categories =['All', 'Fruits','Vegetables','Dairy','SeaFood'];
+    const categories =['All', 'Fruits','Vegetables','Dairy','SeaFood' ,'Meat'];
     const [activeTab , setActiveTab] = useState("All");
 
     let filterItems = activeTab === 'All' ? ProductList :  ProductList.filter(item =>item.category=== activeTab) ;
