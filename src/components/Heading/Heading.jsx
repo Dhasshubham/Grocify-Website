@@ -4,7 +4,7 @@ import React from "react";
 const Heading = (props) => {
   return (
     <div className="mx-auto w-fit  ">
-      <h2 className="text-[2.5rem] md:text-5xl font-bold">
+      <h2 className="text-[2.5rem] md:text-5xl font-bold text-zinc-800">
         <span className="text-orange-500">{props.highlight}</span> {props.heading}
       </h2>
 
