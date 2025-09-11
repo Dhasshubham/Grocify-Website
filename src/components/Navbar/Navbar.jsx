@@ -1,158 +1,126 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { GoHeartFill } from "react-icons/go";
 import { HiShoppingBag } from "react-icons/hi2";
 import { IoIosSearch } from "react-icons/io";
-import { TbMenu2 } from "react-icons/tb";
-import { TbMenu3 } from "react-icons/tb";
+import { TbMenu2, TbMenu3 } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
-import { Link as RouterLink } from "react-router-dom"; //  for login page navigation
+import { FavoriteContext } from "../../context/FavoriteContext";
+import { CartContext } from "../../context/CartContext";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
-  function toggleMenu() {
-    setShowMenu(!showMenu);
-  }
+  const { favorites } = useContext(FavoriteContext);
+  const { cart } = useContext(CartContext);
+
+  const toggleMenu = () => setShowMenu(!showMenu);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
+
+      const sections = ["home", "about", "process", "contact"];
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section && window.scrollY + 100 >= section.offsetTop) {
+          setActiveSection(sections[i]);
+          break;
+        }
+      }
     };
+
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const linkBase =
+    "font-semibold tracking-wider text-zinc-800 hover:text-orange-500 cursor-pointer";
+
   return (
     <header
-      className={` bg-white fixed top-0 right-0 left-0 z-50 ${
+      className={`bg-white fixed top-0 right-0 left-0 z-50 ${
         isScrolled ? "drop-shadow-[0_4px_25px_rgba(0,0,0,0.1)]" : ""
       }`}
     >
       <nav className="items-center flex justify-between max-w-[1400px] mx-auto md:h-[14vh] px-10 h-[12vh]">
         {/* Logo */}
-        <Link
-          to="/"
-          className="text-3xl font-bold"
-          data-aos="fade-down-right"
-          data-aos-duration="1500"
-        >
+        <Link to="/" className="text-3xl font-bold">
           Gr<span className="text-orange-500 uppercase">o</span>cify
         </Link>
 
         {/* Desktop Menu */}
-        <ul
-          className="hidden items-center gap-x-15 md:flex"
-          data-aos="fade-down-right"
-          data-aos-duration="1500"
-        >
-          <li>
-            <ScrollLink
-              to="home"
-              smooth={true}
-              duration={600}
-              offset={-80}
-              className="font-semibold tracking-wider text-orange-500 hover:text-orange-500 cursor-pointer"
-            >
-              Home
-            </ScrollLink>
-          </li>
-          <li>
-            <ScrollLink
-              to="about"
-              smooth={true}
-              duration={600}
-              offset={-80}
-              className="font-semibold tracking-wider text-zinc-800 hover:text-orange-500 cursor-pointer"
-            >
-              About Us
-            </ScrollLink>
-          </li>
-          <li>
-            <ScrollLink
-              to="process"
-              smooth={true}
-              duration={600}
-              offset={-80}
-              className="font-semibold tracking-wider text-zinc-800 hover:text-orange-500 cursor-pointer"
-            >
-              Process
-            </ScrollLink>
-          </li>
-          <li>
-            <ScrollLink
-              to="contact"
-              smooth={true}
-              duration={600}
-              offset={-80}
-              className="font-semibold tracking-wider text-zinc-800 hover:text-orange-500 cursor-pointer"
-            >
-              Contact Us
-            </ScrollLink>
-          </li>
-          {/* ✅ Login link */}
-          <li>
-            <RouterLink
-              to="/login"
-              className="font-semibold tracking-wider text-zinc-800 hover:text-orange-500 cursor-pointer"
-            >
-              Login
-            </RouterLink>
-          </li>
+        <ul className="hidden items-center gap-x-15 md:flex">
+          {["home", "about", "process", "contact"].map((section) => (
+            <li key={section}>
+              <ScrollLink
+                to={section}
+                smooth={true}
+                duration={600}
+                offset={-80}
+                className={
+                  activeSection === section
+                    ? "font-semibold tracking-wider text-orange-500 cursor-pointer"
+                    : linkBase
+                }
+              >
+                {section === "home"
+                  ? "Home"
+                  : section === "about"
+                  ? "About Us"
+                  : section === "process"
+                  ? "Process"
+                  : "Contact Us"}
+              </ScrollLink>
+            </li>
+          ))}
         </ul>
 
-        {/* Nav Action */}
+        {/* Nav Actions */}
         <div className="flex items-center gap-x-10">
-          {/* input field */}
-          <div
-            className="hidden md:flex p-1 border-2 border-orange-500 rounded-full "
-            data-aos="fade-down-right"
-            data-aos-duration="1500"
-          >
+          {/* Search */}
+          <div className="hidden md:flex p-1 border-2 border-orange-500 rounded-full">
             <input
               type="text"
-              name="text"
-              id="text"
               placeholder="Search..."
               autoComplete="off"
-              className="flex-1 height-[5vh] px-3 focus:outline-none ml-1"
+              className="flex-1 px-3 focus:outline-none ml-1"
             />
             <button className="bg-gradient-to-b from-red-600 to-orange-500 text-white w-10 h-10 flex justify-center items-center rounded-full text-xl">
               <IoIosSearch />
             </button>
           </div>
 
-          {/* ❤️ Heart Button */}
-          <button
-            onClick={() => setIsLiked(!isLiked)}
-            className={`text-xl transition-all duration-300 ${
-              isLiked
-                ? "text-red-500 drop-shadow-[0_0_10px_rgba(255,0,0,0.8)]"
-                : "text-zinc-800"
-            }`}
-          >
+          {/* Favorites with count */}
+          <Link to="/favorite" className="relative text-zinc-800 text-2xl">
             <GoHeartFill />
-          </button>
+            {favorites.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                {favorites.length}
+              </span>
+            )}
+          </Link>
 
-          <a
-            href="#"
-            className="text-zinc-800 text-xl"
-            data-aos="fade-down-right"
-            data-aos-duration="1500"
-          >
+          {/* Cart with count */}
+          <Link to="/cart" className="relative text-zinc-800 text-2xl">
             <HiShoppingBag />
-          </a>
+            {cart.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                {cart.length}
+              </span>
+            )}
+          </Link>
 
-          {/* Hamburger */}
-          <a
-            href="#"
+          {/* Mobile Menu Toggle */}
+          <button
             className="text-3xl text-zinc-800 md:hidden"
             onClick={toggleMenu}
           >
             {showMenu ? <TbMenu3 /> : <TbMenu2 />}
-          </a>
+          </button>
         </div>
 
         {/* Mobile Menu */}
@@ -163,73 +131,30 @@ const Navbar = () => {
               : "top-[80px] -left-full"
           } shadow-xl`}
         >
-          <li className="p-3">
-            <ScrollLink
-              to="home"
-              smooth={true}
-              duration={600}
-              offset={-80}
-              className="font-semibold tracking-wider text-orange-500 hover:text-orange-600 cursor-pointer"
-            >
-              Home
-            </ScrollLink>
-          </li>
-          <li className="p-3">
-            <ScrollLink
-              to="about"
-              smooth={true}
-              duration={600}
-              offset={-80}
-              className="font-semibold tracking-wider text-zinc-800 hover:text-orange-500 cursor-pointer"
-            >
-              About Us
-            </ScrollLink>
-          </li>
-          <li className="p-3">
-            <ScrollLink
-              to="process"
-              smooth={true}
-              duration={600}
-              offset={-80}
-              className="font-semibold tracking-wider text-zinc-800 hover:text-orange-500 cursor-pointer"
-            >
-              Process
-            </ScrollLink>
-          </li>
-          <li className="p-3">
-            <ScrollLink
-              to="contact"
-              smooth={true}
-              duration={600}
-              offset={-80}
-              className="font-semibold tracking-wider text-zinc-800 hover:text-orange-500 cursor-pointer"
-            >
-              Contact Us
-            </ScrollLink>
-          </li>
-          {/* ✅ Login link mobile */}
-          <li className="p-3">
-            <RouterLink
-              to="/login"
-              className="font-semibold tracking-wider text-zinc-800 hover:text-orange-500 cursor-pointer"
-            >
-              Login
-            </RouterLink>
-          </li>
-
-          <li className="md:hidden flex p-1 border-2 border-orange-500 rounded-full ">
-            <input
-              type="text"
-              name="text"
-              id="text"
-              placeholder="Search..."
-              autoComplete="off"
-              className="flex-1 height-[5vh] px-3 focus:outline-none ml-1"
-            />
-            <button className="bg-gradient-to-b from-red-600 to-orange-500 text-white w-10 h-10 flex justify-center items-center rounded-full text-xl">
-              <IoIosSearch />
-            </button>
-          </li>
+          {["home", "about", "process", "contact"].map((section) => (
+            <li key={section}>
+              <ScrollLink
+                to={section}
+                smooth={true}
+                duration={600}
+                offset={-80}
+                onClick={() => setShowMenu(false)}
+                className={
+                  activeSection === section
+                    ? "font-semibold tracking-wider text-orange-500 cursor-pointer"
+                    : linkBase
+                }
+              >
+                {section === "home"
+                  ? "Home"
+                  : section === "about"
+                  ? "About Us"
+                  : section === "process"
+                  ? "Process"
+                  : "Contact Us"}
+              </ScrollLink>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>
