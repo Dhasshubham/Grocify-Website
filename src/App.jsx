@@ -7,14 +7,17 @@ import SeaFood from "./components/SeaFood/SeaFood";
 import AllProducts from "./components/AllProducts/AllProducts";
 import Layout from "./components/Layout/Layout";
 import Footer from "./components/Footer/Footer";
+import Login from "./components/Login/Login";
+import SignUp from "./components/SignUp/SignUp";
 
 const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Layout />,
+
       children: [
-          {
+        {
           path: "/",
           element: <Home />,
         },
@@ -34,12 +37,16 @@ const App = () => {
           path: "/allproducts",
           element: <AllProducts />,
         },
-       
+        
       ],
-      
-
-     
-
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+     {
+      path: "/register",
+      element: <SignUp />,
     },
   ]);
 

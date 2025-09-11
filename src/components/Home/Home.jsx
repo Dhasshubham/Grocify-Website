@@ -9,6 +9,7 @@ import Process from "../Process/Process";
 import Testimonials from "../Testimonials/Testimonials";
 import Footer from "../Footer/Footer";
 import Layout from "../Layout/Layout";
+import Login from "../Login/Login";
 
 const Home = () => {
   return (
