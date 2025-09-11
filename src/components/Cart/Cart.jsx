@@ -14,11 +14,11 @@ const Cart = () => {
         <p className="text-lg">Your cart is empty.</p>
       ) : (
         <>
-          <div className="space-y-6">
+          <div>
             {cart.map((item) => (
-              <div
+              <div 
                 key={item.name}
-                className="flex items-center justify-between bg-white p-4 rounded-lg shadow"
+                className="flex items-center bg-white justify-between p-4 rounded-lg shadow "
               >
                 <div className="flex items-center gap-4">
                   <img src={item.image} alt={item.name} className="w-20 h-20 object-contain" />
@@ -28,17 +28,17 @@ const Cart = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 space-y-6grid md:grid-cols-3 grid-cols-3">
                   <button
                     onClick={() => decreaseQty(item.name)}
-                    className="px-3 py-1 bg-gray-200 rounded"
+                    className=" md:px-3 py-1 bg-gray-200 rounded"
                   >
                     ➖
                   </button>
                   <span className="text-lg font-semibold">{item.qty}</span>
                   <button
                     onClick={() => addToCart(item)}
-                    className="px-3 py-1 bg-gray-200 rounded"
+                    className=" md:px-3 py-1 bg-gray-200 rounded"
                   >
                     ➕
                   </button>

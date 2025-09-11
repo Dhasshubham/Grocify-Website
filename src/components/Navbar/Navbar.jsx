@@ -3,7 +3,7 @@ import { GoHeartFill } from "react-icons/go";
 import { HiShoppingBag } from "react-icons/hi2";
 import { IoIosSearch } from "react-icons/io";
 import { TbMenu2, TbMenu3 } from "react-icons/tb";
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom"; // ✅ for login
 import { Link as ScrollLink } from "react-scroll";
 import { FavoriteContext } from "../../context/FavoriteContext";
 import { CartContext } from "../../context/CartContext";
@@ -48,9 +48,9 @@ const Navbar = () => {
     >
       <nav className="items-center flex justify-between max-w-[1400px] mx-auto md:h-[14vh] px-10 h-[12vh]">
         {/* Logo */}
-        <Link to="/" className="text-3xl font-bold">
+        <RouterLink to="/" className="text-3xl font-bold">
           Gr<span className="text-orange-500 uppercase">o</span>cify
-        </Link>
+        </RouterLink>
 
         {/* Desktop Menu */}
         <ul className="hidden items-center gap-x-15 md:flex">
@@ -77,6 +77,15 @@ const Navbar = () => {
               </ScrollLink>
             </li>
           ))}
+          {/* ✅ Login Link */}
+          <li>
+            <RouterLink
+              to="/login"
+              className="font-semibold tracking-wider text-zinc-800 hover:text-orange-500 cursor-pointer"
+            >
+              Login
+            </RouterLink>
+          </li>
         </ul>
 
         {/* Nav Actions */}
@@ -94,25 +103,28 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Favorites with count */}
-          <Link to="/favorite" className="relative text-zinc-800 text-2xl">
+          {/* Favorites */}
+          <RouterLink
+            to="/favorite"
+            className="relative text-zinc-800 text-2xl"
+          >
             <GoHeartFill />
             {favorites.length > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
                 {favorites.length}
               </span>
             )}
-          </Link>
+          </RouterLink>
 
-          {/* Cart with count */}
-          <Link to="/cart" className="relative text-zinc-800 text-2xl">
+          {/* Cart */}
+          <RouterLink to="/cart" className="relative text-zinc-800 text-2xl">
             <HiShoppingBag />
             {cart.length > 0 && (
               <span className="absolute -top-2 -right-2 bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
                 {cart.length}
               </span>
             )}
-          </Link>
+          </RouterLink>
 
           {/* Mobile Menu Toggle */}
           <button
@@ -125,14 +137,14 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         <ul
-          className={`md:hidden flex-col gap-y-12 absolute bg-orange-500/20 backdrop-blur-xl rounded-xl p-8 text-center transition-all duration-500 ${
+          className={`md:hidden flex-col gap-y-12 absolute bg-orange-500/20 backdrop-blur-xl rounded-xl p-10 text-center transition-all duration-500 ${
             showMenu
               ? "top-[80px] left-1/2 -translate-x-1/2"
               : "top-[80px] -left-full"
           } shadow-xl`}
         >
           {["home", "about", "process", "contact"].map((section) => (
-            <li key={section}>
+            <li key={section} className="p-4">
               <ScrollLink
                 to={section}
                 smooth={true}
@@ -141,7 +153,7 @@ const Navbar = () => {
                 onClick={() => setShowMenu(false)}
                 className={
                   activeSection === section
-                    ? "font-semibold tracking-wider text-orange-500 cursor-pointer"
+                    ? "font-semibold tracking-wider text-orange-500 cursor-pointer "
                     : linkBase
                 }
               >
@@ -155,6 +167,16 @@ const Navbar = () => {
               </ScrollLink>
             </li>
           ))}
+          {/* ✅ Login Link for Mobile */}
+          <li>
+            <RouterLink
+              to="/login"
+              onClick={() => setShowMenu(false)}
+              className="font-semibold tracking-wider text-zinc-800 hover:text-orange-500 cursor-pointer"
+            >
+              Login
+            </RouterLink>
+          </li>
         </ul>
       </nav>
     </header>
