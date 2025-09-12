@@ -23,6 +23,13 @@ import SliceCheese from '../../assets/slice-cheese.png'
 import RicottaCheese from '../../assets/ricotta-cheese.png'
 import Grapes from '../../assets/grapes.png'
 import Lettuce from '../../assets/lettuce.png'
+import Mango from '../../assets/mango.png'
+import CustardApple from '../../assets/Custard.png'
+import Cucumber from '../../assets/Cucumber.png'
+import Apple from '../../assets/apple.png'
+import Potato from '../../assets/potato.png'
+import IceCream from '../../assets/ice-cream.png'
+
 
 
 const products = [
@@ -199,6 +206,48 @@ const products = [
         price: 3.0,
         category: 'Vegetables',
         image: Lettuce
+    },
+    {
+        id: 26,
+        name: 'Mango',
+        price: 5.0,
+        category: 'Fruits',
+        image: Mango
+    },
+    {
+        id: 27,
+        name: 'CustardApple',
+        price: 4.5,
+        category: 'Fruits',
+        image: CustardApple
+    },
+     {
+        id: 28,
+        name: 'Cucumber',
+        price: 2.0,
+        category: 'Vegetables',
+        image: Cucumber
+    },
+    {
+        id: 29,
+        name: 'Apple',
+        price: 6.0,
+        category: 'Fruits',
+        image: Apple
+    },
+    {
+        id: 30,
+        name: 'Potato',
+        price: 6.0,
+        category: 'Vegetables',
+        image: Potato
+    },
+    {
+        id: 31,
+        name: 'Ice Cream',
+        price: 7.0,
+        category: 'Dairy',
+        image: IceCream
     },
 ];
 

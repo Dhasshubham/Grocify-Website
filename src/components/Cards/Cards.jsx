@@ -5,8 +5,7 @@ import { FavoriteContext } from "../../context/FavoriteContext";
 import { CartContext } from "../../context/CartContext";
 
 const Cards = ({ image, name, price }) => {
-  const { addToFavorites, removeFromFavorites, isFavorite } =
-    useContext(FavoriteContext);
+  const { addToFavorites, removeFromFavorites, isFavorite } = useContext(FavoriteContext);
   const { addToCart } = useContext(CartContext);
 
   const toggleFavorite = () => {
@@ -24,9 +23,7 @@ const Cards = ({ image, name, price }) => {
         <button
           onClick={toggleFavorite}
           className={`text-3xl transition-colors ${
-            isFavorite(name)
-              ? "text-red-500"
-              : "text-zinc-300 hover:text-red-500"
+            isFavorite(name) ? "text-red-500" : "text-zinc-300 hover:text-red-500"
           }`}
         >
           <FaHeart />
@@ -42,11 +39,7 @@ const Cards = ({ image, name, price }) => {
 
       {/* card img */}
       <div className="w-full h-50">
-        <img
-          src={image}
-          className="w-full h-full object-contain mx-auto"
-          alt={name}
-        />
+        <img src={image} className="w-full h-full object-contain mx-auto" alt={name} />
       </div>
 
       {/* card content */}
