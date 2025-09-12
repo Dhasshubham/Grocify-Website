@@ -4,7 +4,7 @@ import DiscountBg from '../../assets/fresh-fruits.png'
 
 const Discount = () => {
   return (
-   <section className='bg-zinc-100  bg-center bg-contain bg-no-repeat bg-right mt-20  ' style={{backgroundImage:`url(${DiscountBg})`}}>
+   <section className='bg-zinc-100 bg-contain bg-no-repeat bg-right mt-20  ' style={{backgroundImage:`url(${DiscountBg})`}}>
 
     <div className='md:bg-transparent bg-zinc-100  max-w-[1400px] mx-auto px-10 flex py-10 md:flex-row flex-col'>
 
