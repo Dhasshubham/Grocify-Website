@@ -3,9 +3,11 @@ import { FaHeart, FaPlus } from "react-icons/fa";
 import Button from "../Button/Button";
 import { FavoriteContext } from "../../context/FavoriteContext";
 import { CartContext } from "../../context/CartContext";
+import { Link } from "react-router-dom";
 
 const Cards = ({ image, name, price }) => {
-  const { addToFavorites, removeFromFavorites, isFavorite } = useContext(FavoriteContext);
+  const { addToFavorites, removeFromFavorites, isFavorite } =
+    useContext(FavoriteContext);
   const { addToCart } = useContext(CartContext);
 
   const toggleFavorite = () => {
@@ -23,7 +25,9 @@ const Cards = ({ image, name, price }) => {
         <button
           onClick={toggleFavorite}
           className={`text-3xl transition-colors ${
-            isFavorite(name) ? "text-red-500" : "text-zinc-300 hover:text-red-500"
+            isFavorite(name)
+              ? "text-red-500"
+              : "text-zinc-300 hover:text-red-500"
           }`}
         >
           <FaHeart />
@@ -39,14 +43,21 @@ const Cards = ({ image, name, price }) => {
 
       {/* card img */}
       <div className="w-full h-50">
-        <img src={image} className="w-full h-full object-contain mx-auto" alt={name} />
+        <img
+          src={image}
+          className="w-full h-full object-contain mx-auto"
+          alt={name}
+        />
       </div>
 
       {/* card content */}
       <div className="text-center">
         <h3 className="text-2xl font-semibold">{name}</h3>
         <p className="text-2xl font-bold mt-4 mb-3">${price.toFixed(2)}</p>
-        <Button content="Shop Now" />
+
+        <Link to="/cart" onClick={() => addToCart({ image, name, price })}>
+          <Button content="Shop Now" />
+        </Link>
       </div>
     </div>
   );

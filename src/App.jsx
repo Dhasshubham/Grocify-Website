@@ -1,3 +1,4 @@
+
 import React from "react";
 import Home from "./components/Home/Home";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -8,8 +9,7 @@ import AllProducts from "./components/AllProducts/AllProducts";
 import Layout from "./components/Layout/Layout";
 import Favorite from "./components/Favorite/Favorite";
 import Cart from "./components/Cart/Cart";
-import Login from "./components/Login/Login";
-import SignUp from "./components/SignUp/SignUp";
+import Address from "./components/Address/Address";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -45,20 +45,15 @@ const App = () => {
           path: "/cart",
           element: <Cart />,
         },
+        
+          {
+          path: "/address",
+          element: <Address />,
+        },
           
        
       ],
-
     },
-      {
-          path: "/login",
-          element: <Login/>,
-        },
-
-          {
-          path: "/signup",
-          element: <SignUp/>,
-        },
     
   ]);
 
