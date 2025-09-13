@@ -1,4 +1,3 @@
-
 import React from "react";
 import Home from "./components/Home/Home";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -10,6 +9,8 @@ import Layout from "./components/Layout/Layout";
 import Favorite from "./components/Favorite/Favorite";
 import Cart from "./components/Cart/Cart";
 import Address from "./components/Address/Address";
+import Login from "./components/Login/Login";
+import SignUp from "./components/SignUp/SignUp";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -17,7 +18,7 @@ const App = () => {
       path: "/",
       element: <Layout />,
       children: [
-          {
+        {
           path: "/",
           element: <Home />,
         },
@@ -37,24 +38,30 @@ const App = () => {
           path: "/allproducts",
           element: <AllProducts />,
         },
-          {
+        {
           path: "/favorite",
           element: <Favorite />,
         },
-           {
+        {
           path: "/cart",
           element: <Cart />,
         },
-        
-          {
+
+        {
           path: "/address",
           element: <Address />,
         },
-          
-       
       ],
     },
-    
+
+    {
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "/signup",
+      element: <SignUp />,
+    },
   ]);
 
   return <RouterProvider router={router} />;
